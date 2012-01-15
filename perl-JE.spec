@@ -6,13 +6,13 @@
 %include	/usr/lib/rpm/macros.perl
 Summary:	JE - Pure-Perl ECMAScript (JavaScript) Engine
 Name:		perl-JE
-Version:	0.055
+Version:	0.058
 Release:	1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/JE/%{pdir}-%{version}.tar.gz
-# Source0-md5:	70b9c0d8053a2f4fdd5be8ec9ef6bb04
+# Source0-md5:	2e78436792d8c7b07e83b738cbd76173
 URL:		http://search.cpan.org/dist/JE/
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
