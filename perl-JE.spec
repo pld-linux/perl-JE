@@ -3,7 +3,6 @@
 %bcond_without	tests		# do not perform "make test"
 
 %define		pdir	JE
-%include	/usr/lib/rpm/macros.perl
 Summary:	JE - Pure-Perl ECMAScript (JavaScript) Engine
 Name:		perl-JE
 Version:	0.058
