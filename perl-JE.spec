@@ -6,7 +6,7 @@
 Summary:	JE - Pure-Perl ECMAScript (JavaScript) Engine
 Name:		perl-JE
 Version:	0.058
-Release:	1
+Release:	2
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
