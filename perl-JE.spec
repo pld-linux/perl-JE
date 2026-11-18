@@ -5,18 +5,18 @@
 %define		pdir	JE
 Summary:	JE - Pure-Perl ECMAScript (JavaScript) Engine
 Name:		perl-JE
-Version:	0.058
-Release:	2
+Version:	0.066
+Release:	1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/JE/%{pdir}-%{version}.tar.gz
-# Source0-md5:	2e78436792d8c7b07e83b738cbd76173
+# Source0-md5:	63ed03bd82fbae5021a7f3f200c18799
+Patch0:		%{name}-goto-into-construct.patch
 URL:		http://search.cpan.org/dist/JE/
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
 %if %{with tests}
-BuildRequires:	perl-Tie-RefHash-Weak
 BuildRequires:	perl-TimeDate
 %endif
 BuildArch:	noarch
@@ -28,6 +28,7 @@ pure-Perl JavaScript engine.
 
 %prep
 %setup -q -n %{pdir}-%{version}
+%patch -P0 -p1
 
 %build
 %{__perl} Makefile.PL \

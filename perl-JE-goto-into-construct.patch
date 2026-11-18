@@ -1,0 +1,54 @@
+# perl >= 5.42 removed goto into a construct; labelled loops died in JE::Code::eval
+--- JE-0.066.orig/lib/JE/Code.pm
++++ JE-0.066/lib/JE/Code.pm
+@@ -317,25 +317,24 @@
+ 		if ($$stm[-1][1] =~ /^(?:do|while|for|switch)\z/) {
+ 			$stm = $$stm[-1];
+ 			$type = $$stm[1];
+-			no warnings 'deprecated';
+-			goto LOOPS; # skip unnecessary if statements
+ 		}
+-
+-		BREAK: {
+-			my $returned = $$stm[-1]->eval;
+-			defined $returned and $return = $returned
+-		}
+-
+-		# Note that this has 'defined' in it, whereas the similar
+-		# 'if' statement further down where the loop constructs are
+-		# doesn't. This is because 'break' without a label sets
+-		# $_label to '' and exits loops and switches.
+-		if(! defined $_label || first {$_ eq $_label} @labels) {
+-			undef $_label;
+-			return;
+-		} else {
+-			no warnings 'exiting';
+-			last BREAK;
++		else {
++			BREAK: {
++				my $returned = $$stm[-1]->eval;
++				defined $returned and $return = $returned
++			}
++
++			# Note that this has 'defined' in it, whereas the similar
++			# 'if' statement further down where the loop constructs are
++			# doesn't. This is because 'break' without a label sets
++			# $_label to '' and exits loops and switches.
++			if(! defined $_label || first {$_ eq $_label} @labels) {
++				undef $_label;
++				return;
++			} else {
++				no warnings 'exiting';
++				last BREAK;
++			}
+ 		}
+ 	}
+ 
+@@ -392,7 +391,6 @@
+ 
+ 		no warnings 'exiting';
+ 
+-		LOOPS:
+ 		my $returned;
+ 		
+ 		BREAK: {
